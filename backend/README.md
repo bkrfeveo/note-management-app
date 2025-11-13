@@ -1,8 +1,9 @@
 # API REST Backend App Gestion des notes avec NodeJS Express MongoDB
 
 ## Présentation
-C'est une API faite pour la gestions des notes avec une authentification .
-en utilisant JWT (JsonWebToken) et bcryptjs
+C'est une API faite pour la gestions des notes avec une authentification qui utilise JWT (JsonWebToken) et bcryptjs
+
+
 Il est développer avec le framework **Express JS** pour sa simple utilisation et d'autres librairies.
 
 La gestion des erreur est faite grace aux codes d'état (200, 400 et 500)
@@ -23,7 +24,7 @@ npm install
 cd src/
 node app.js
 ```
-4- Utiliser postman ou curl pour les test [Collection de tests](https://www.postman.com/restless-equinox-22834/workspace/public-workspace/collection/38778849-ac4eb506-3f09-4b4b-8dc7-ee2bdef22161?action=share&creator=38778849)
+4- Utiliser ce collection postman pour les test [Collection Postman de tests](https://www.postman.com/restless-equinox-22834/workspace/public-workspace/collection/38778849-ac4eb506-3f09-4b4b-8dc7-ee2bdef22161?action=share&creator=38778849)
 
 
 ## Endpoint 
