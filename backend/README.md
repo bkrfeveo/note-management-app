@@ -11,7 +11,7 @@ La gestion des erreur est faite grace aux codes d'état (200, 400 et 500)
 ## Installation du projet 
 1- Cloner le projet sur votre machine en tapant cette commande 
 ```bash
-git clone https://github.com/bkrfeveo/node-management-app.git
+git clone https://github.com/bkrfeveo/note-management-app.git
 ```
 2- Initialiser npm et installer les dépendances
 ```bash
