@@ -8,15 +8,20 @@ const noteSchema = new mongoose.Schema({
     required: [true, 'le titre  est requis'],
     trim: true,
   },
-  description: {
+  content: {
     type: String,
-    required: [true, 'la description est requise'],
+    required: [true, 'le contenu est requis'],
     trim: true,
   },
   categorie: {
     type: String,
     trim: true,
     enum: ['personnel', 'travail', 'urgent', 'reunion', 'autres'],
+  },
+  isFavori: {
+    type: Boolean,
+    trim: true,
+    default: false,
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,

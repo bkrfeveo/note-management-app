@@ -69,17 +69,17 @@ exports.getNoteId = async (req, res) => {
 // Creer une nouvelle note
 exports.createNote = async (req, res) => {
     try {
-        const { title, description, categorie } = req.body;
+        const { title, content, categorie } = req.body;
         const createdBy = req.user._id;
 
         if(!title || title === "") 
             res.status(400).json({ message: "Le titre est requis" });
 
-        if(!description || description === "") 
-            res.status(400).json({ message: "La description est requise" });
+        if(!content || content === "") 
+            res.status(400).json({ message: "Le contenu est requis" });
 
         // Creer une nouvelle note
-        const newNote = new Note({ title, description, categorie, createdBy });
+        const newNote = new Note({ title, content, categorie, createdBy });
 
         // Enregistrer la note
         await newNote.save();
@@ -100,7 +100,7 @@ exports.createNote = async (req, res) => {
 exports.updateNote = async (req, res) => {
     try {
         const idParams = req.params.id;
-        const { title, description, categorie } = req.body;
+        const { title, content, categorie } = req.body;
 
         const noteId = await Note.findById(idParams);
         console.log(noteId);
@@ -116,7 +116,7 @@ exports.updateNote = async (req, res) => {
         // Effectuer la mise a jour
         const noteUpdated = {
             title: title || noteId.title,
-            description: description || noteId.description,
+            content: content || noteId.content,
             categorie: categorie || noteId.categorie,
         };
 

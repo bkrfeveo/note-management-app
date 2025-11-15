@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/bkrfeveo/note-management-app/issues"
   },
-  "homepage": "https://github.com/bkrfeveo/note-management-app#readme"
+  "homepage": "https://github.com/bkrfeveo/note-management-app#readme",
+  "dependencies": {
+    "lucide-react": "^0.553.0"
+  }
 }
