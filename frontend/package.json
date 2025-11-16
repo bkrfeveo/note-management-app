@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "run dev",
+    "test": "vitest",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -14,6 +16,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "@tinymce/tinymce-react": "^6.3.0",
     "axios": "^1.13.2",
+    "dompurify": "^3.3.0",
     "lucide-react": "^0.553.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

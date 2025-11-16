@@ -5,6 +5,7 @@ import NoteItem from "./NoteItem";
 import { Spinner } from "@radix-ui/themes";
 import deleteNoteService from "../services/deleteNote";
 import NoteEdit from "./NoteEdit";
+import ParsingHTML from "./ParsingContent";
 
 
 const NoteCard = ({ note }) => {
@@ -103,11 +104,13 @@ const NoteCard = ({ note }) => {
           </div>
         ) : (
           <>
-            <div className="flex items-start justify-between mb-2">
+            {/* <div className="flex items-start justify-between mb-2">
               <h3 className={`text-lg font-bold ${themeNote[0].text}`}>{note.title}</h3>
+            </div> */}
+            <div className={`-mt-2 line-clamp-6 ${themeNote[0].text}`}>
+              {/* {note.content} */}
+              <ParsingHTML html={note.content} />
             </div>
-            <p className={`text-sm mb-3 whitespace-pre-wrap line-clamp-5 ${themeNote[0].text}`}>{note.content}</p>
-            
             {note.tags && (
               <div className="flex items-center gap-1 mb-3 text-xs">
                 <Tag className="w-3 h-3" />
@@ -115,13 +118,12 @@ const NoteCard = ({ note }) => {
               </div>
             )}
 
-            <div className="flex items-center font-medium gap-1 text-xs mb-3">
+            {/* <div className="flex items-center font-medium gap-1 text-xs mb-3">
               <Clock className="w-4 h-4" />
               <span className={themeNote[0].text}>
                 {new Date(note.createdAt).toLocaleDateString('fr-FR')}
               </span>
-            </div>
-
+            </div> */}
             <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
               {/* Voir les details */}
               <NoteItem note={note} />
@@ -133,19 +135,12 @@ const NoteCard = ({ note }) => {
                 <Star className="w-4 h-4" />
               </button>
               <button
-                onClick={() => togglePrivate(note.id)}
-                className={`p-2 rounded ${note.isPrivate ? 'bg-red-500 text-white' : 'bg-white/50'} hover:bg-red-500 hover:text-white`}
-                title="Privé"
-              >
-                <Lock className="w-4 h-4" />
-              </button>
-              {/* <button
                 onClick={() => startEditing(note)}
                 className="p-2 bg-white/50 rounded hover:bg-blue-500 hover:text-white"
                 title="Éditer"
               >
                 <Edit2 className="w-4 h-4" />
-              </button> */}
+              </button>
               <NoteEdit note={note} />
               <button
                 onClick={() => deleteNote(note._id)}
@@ -160,12 +155,6 @@ const NoteCard = ({ note }) => {
               </button>
             </div>
           </>
-        )}
-
-        {note.isPrivate && !editing && (
-          <div className="absolute bottom-2 right-2">
-            <Lock className="w-4 h-4 text-red-600" />
-          </div>
         )}
       </div>
     );

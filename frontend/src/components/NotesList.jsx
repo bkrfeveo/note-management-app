@@ -4,13 +4,14 @@ import NoteCard from './NoteCard';
 import logoutService from '../services/logout';
 import { useNavigate } from 'react-router-dom';
 import getAllNotesService from '../services/getAllNotes';
-import NoteItem from './NoteItem';
-import EditorComponent from './Editor';
-import { LogOut } from 'lucide-react';
+import { LogOut, Plus } from 'lucide-react';
 
 
 export default function NotesApp() {
     const [notes, setNotes] = useState([]);
+    const [addNewNote, setAddNewNote] = useState(false);
+    const [editNote, setEditNote] = useState(false);
+    const [isFinish, setIsFinish] = useState(false);
     const navigate = useNavigate();
 
     
@@ -43,7 +44,7 @@ export default function NotesApp() {
 
 
     return (
-        <div className="bg-white from-blue-50 to-purple-50 p-8 px-20">
+        <div className="bg-white from-blue-50 to-purple-50 p-8 md:px-20 px-6">
             <div className="max-w-7xl mx-auto">
                 <div className='flex justify-between'>
                     <div className="mb-8 flex flex-col gap-3">
@@ -103,18 +104,30 @@ export default function NotesApp() {
                                 value="Reinitialiser"
                             />
                             {/* Formulaire de création */}
-                            <NoteForm />
+                            <button
+                                className="flex items-center gap-3 justify-center bg-blue-500 hover:bg-blue-600 text-white duration-200 active:bg-blue-700 font-medium py-2 px-6 rounded-[10px]"
+                                onClick={() => { setAddNewNote(!addNewNote); setIsFinish(false);}}
+                            >
+                                {!addNewNote ? 
+                                <>
+                                    <Plus />
+                                    <span>Nouveau note</span>
+                                </>
+                                :
+                                <>
+                                    <span>Annuler</span>
+                                </>}
+                            </button>
                         </div>
                     </div>
                 </div>
-
-
+                {addNewNote && <NoteForm isOpen={addNewNote} />}   
                 {/* Grille de notes */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {notes.map(note => (
                     <>
-                    {/* <NoteItem note={note} /> */}
-                    <NoteCard key={note.id} note={note} />
+                        {/* <NoteItem note={note} /> */}
+                        <NoteCard key={note.id} note={note} />
                     </>
                 ))}
                 </div>

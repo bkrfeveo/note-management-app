@@ -5,6 +5,7 @@ import NotesApp from './components/NotesList'
 import Login from './components/Login'
 import Register from './components/Register'
 import ProtectedRoute from './components/ProtectedRoute'
+// import NoteForm from './components/NoteForm';
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
             path='/inscription' 
             element={<Register />}
           />
+          {/* <Route 
+            path='/nouveau-note' 
+            element={<NoteForm />}
+          /> */}
         </Routes>
       </BrowserRouter>
     </>

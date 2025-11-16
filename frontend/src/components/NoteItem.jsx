@@ -1,5 +1,6 @@
 import { Button, Dialog, Flex,  } from "@radix-ui/themes";
 import { Eye } from "lucide-react";
+import ParsingHTML from "./ParsingContent";
 
 
 const NoteItem = ({ note }) => {
@@ -15,9 +16,9 @@ const NoteItem = ({ note }) => {
                 </button>
             </Dialog.Trigger>
             <Dialog.Content color="none">
-                <Dialog.Title>{note.title}</Dialog.Title>
+                {/* <Dialog.Title>{note.title}</Dialog.Title> */}
                 <Dialog.Description>
-                    {note.content}
+                    <ParsingHTML className="flex flex-col gap-6" html={note.content} />
                 </Dialog.Description>
                 <Flex gap="3" justify="end">
                     <Dialog.Close>

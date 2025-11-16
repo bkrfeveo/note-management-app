@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # Service de Base de Données (MongoDB)
+  mongo:
+    image: mongo:latest # Image officielle de MongoDB
+    container_name: note-management-mongo
+    restart: always
+    ports:
+      - "27017:27017" # Port local 27017 au port du conteneur
+    volumes:
+      - mongo-data:/data/db # Persister les données sur le volume nommé
+
+  # Service Backend (Node.js)
+  backend:
+    build:
+      context: ./backend # Chemin vers le répertoire du Dockerfile du backend
+      dockerfile: Dockerfile
+    container_name: note-management-backend
+    restart: always
+    ports:
+      - "3000:3000" # le port d'ecoute est 3000
+    environment:
+      # Variable d'environnement pour l'URL de connexion à MongoDB
+      NODE_ENV: development
+      MONGO_URI: mongodb+srv://sagnabakaryfeveo_db_user:F576RjOZdejAdQAS@dbnodejs.zsvovgn.mongodb.net/notes-mongo-db
+    depends_on:
+      - mongo # MongoDB doit démarre avant le backend
+    volumes:
+      - ./backend:/src/app # Monter le code source pour le développement (Hot Reload)
+      - /note-management-app/backend/node_modules # S'assurer que node_modules reste dans le conteneur
+
+  # Service Frontend (React)
+  frontend:
+    build:
+      context: ./frontend # Répertoire contenant le Dockerfile du frontend
+      dockerfile: Dockerfile
+    container_name: note-management-frontend
+    ports:
+      - "5173:5173" # Le frontend s'exécutera sur le port 5173
+    depends_on:
+      - backend # backend doit demarrer avant frontend
+    volumes:
+      - ./frontend:/src/main # Code source pour le développement
+      - /note-management-app/frontend/node_modules
+
+volumes:
+  mongo-data: # Volume de persistance pour MongoDB

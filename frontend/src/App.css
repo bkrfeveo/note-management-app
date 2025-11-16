@@ -7,3 +7,30 @@
 .box-shadow-css {
   box-shadow: rgba(0, 72, 253, 0.24) 0px 3px 8px;
 }
+
+h1 {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: -20px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 13px;
+  font-weight: 500;
+}
