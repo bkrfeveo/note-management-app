@@ -1,8 +1,8 @@
+@import "tailwindcss";
+
 #root {
   margin: 0 auto;
 }
-
-@import "tailwindcss";
 
 .box-shadow-css {
   box-shadow: rgba(0, 72, 253, 0.24) 0px 3px 8px;
@@ -10,7 +10,7 @@
 
 h1 {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: -20px;
 }
 

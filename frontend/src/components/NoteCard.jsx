@@ -13,7 +13,7 @@ const NoteCard = ({ note }) => {
     const [editingId, setEditingId] = useState(null);
     const [editing, setEditing] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [editContent, setEditContent] = useState({ title: note.title, content: note.content, tags: note.tags });
+    const [editContent, setEditContent] = useState({ content: note.content, tags: note.tags });
 
     const themeNote = COLORS;
 
@@ -65,13 +65,13 @@ const NoteCard = ({ note }) => {
         
         {editing ? (
           <div className="space-y-3">
-            <input
+            {/* <input
               type="text"
               value={editContent.title}
               onChange={(e) => setEditContent({ ...editContent, title: e.target.value })}
               className={`w-full px-3 py-2 rounded border-2 border-gray-300 focus:border-blue-500 focus:outline-none ${themeNote[0].class}`}
               placeholder="Titre"
-            />
+            /> */}
             <textarea
               value={editContent.content}
               onChange={(e) => setEditContent({ ...editContent, content: e.target.value })}

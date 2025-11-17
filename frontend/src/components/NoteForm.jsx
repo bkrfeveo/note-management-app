@@ -11,7 +11,7 @@ export default function NoteForm({isOpen}) {
     const [isFinish, setIsFinish] = useState(false);
     const [messageError, setMessageError] = useState('');
     const [newNote, setNewNote] = useState({ 
-        title: '', 
+        // title: '', 
         content: '', 
         isFavorite: false, 
         categorie: '' 
@@ -20,7 +20,7 @@ export default function NoteForm({isOpen}) {
     
     const handleSubmit = async () => {  
       try{
-        if (!newNote.title.trim() || !newNote.content.trim()) {
+        if (!newNote.content.trim()) {
           setMessageError(true);
         } else {
           setMessageError(false);
@@ -29,7 +29,7 @@ export default function NoteForm({isOpen}) {
           console.log("Note ajoutee avec succes !\n", newNote);;
           setIsFinish(true);
           setNewNote({ 
-            title: '', 
+            // title: '', 
             content: '', 
             isFavorite: false, 
             categorie: '' 
@@ -50,7 +50,7 @@ export default function NoteForm({isOpen}) {
               <h2 className="text-3xl font-semibold mb-4 text-gray-800">Créer une nouvelle note</h2>
               <div className="space-y-3 flex flex-col gap-8 justify-around">
                 <div className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-1">
+                  {/* <div className="flex flex-col gap-1">
                     <label htmlFor="title" className="font-medium text-lg text-gray-600">Titre de votre note</label>
                     <input
                       type="text"
@@ -60,7 +60,7 @@ export default function NoteForm({isOpen}) {
                       placeholder="Titre de la note..."
                       className="w-full px-4 text-gray-800 py-3 rounded-lg border border-gray-500 focus:border-blue-500 focus:outline-none"
                     />
-                  </div>
+                  </div> */}
                   <div className="flex flex-col gap-1">
                     <label htmlFor="content" className="font-medium text-lg text-gray-600">Contenu de votre note</label>
                     <EditorComponent

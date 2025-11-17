@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 
 // le Schema de la note
 const noteSchema = new mongoose.Schema({
-   title: {
-    type: String,
-    required: [true, 'le titre  est requis'],
-    trim: true,
-  },
+  //  title: {
+  //   type: String,
+  //   required: [true, 'le titre  est requis'],
+  //   trim: true,
+  // },
   content: {
     type: String,
     required: [true, 'le contenu est requis'],

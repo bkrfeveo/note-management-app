@@ -58,7 +58,7 @@ exports.getNoteId = async (req, res) => {
             message: "Note recupérée avec succès ",
             noteId: noteId
         });
-    } catch (err) {
+    } catch (err) { 
         res.status(500).json({
             message: 'Erreur lors de la recuperation de la note specifiee',
             error: err.message
@@ -69,17 +69,14 @@ exports.getNoteId = async (req, res) => {
 // Creer une nouvelle note
 exports.createNote = async (req, res) => {
     try {
-        const { title, content, categorie } = req.body;
+        const { content, categorie } = req.body;
         const createdBy = req.user._id;
-
-        if(!title || title === "") 
-            res.status(400).json({ message: "Le titre est requis" });
 
         if(!content || content === "") 
             res.status(400).json({ message: "Le contenu est requis" });
 
         // Creer une nouvelle note
-        const newNote = new Note({ title, content, categorie, createdBy });
+        const newNote = new Note({ content, categorie, createdBy });
 
         // Enregistrer la note
         await newNote.save();
@@ -100,7 +97,7 @@ exports.createNote = async (req, res) => {
 exports.updateNote = async (req, res) => {
     try {
         const idParams = req.params.id;
-        const { title, content, categorie } = req.body;
+        const { content, categorie } = req.body;
 
         const noteId = await Note.findById(idParams);
         console.log(noteId);
@@ -115,7 +112,7 @@ exports.updateNote = async (req, res) => {
 
         // Effectuer la mise a jour
         const noteUpdated = {
-            title: title || noteId.title,
+            // title: title || noteId.title,
             content: content || noteId.content,
             categorie: categorie || noteId.categorie,
         };
@@ -126,13 +123,13 @@ exports.updateNote = async (req, res) => {
         ).populate('createdBy', 'name email');
 
         res.status(200).json({ 
-            message: "Tache mise à jour avec succès", 
+            message: "Note mise à jour avec succès !", 
             noteUpdated: noteUpdated,
         });
 
     } catch (err) { 
         res.status(500).json({
-            message: 'Erreur lors de la mise a jour de la tache',
+            message: 'Erreur lors de la mise a jour de la note',
             error: err.message
         }); 
     }
@@ -156,10 +153,10 @@ exports.deleteNote = async (req, res) => {
         await Note.findByIdAndDelete(idParams);
 
         // Message de succes de la suppression
-        res.status(200).json({ message: "Tache supprimée avec succès" });
+        res.status(200).json({ message: "Note supprimée avec succès !" });
     } catch (err) {
         res.status(500).json({
-            message: 'Erreur lors de la suppression de la tache',
+            message: 'Erreur lors de la suppression de la note',
             error: err.message
         });
     }

@@ -10,7 +10,7 @@ export default function NoteEdit({note, isOpen}) {
     const [loading, setLoading] = useState(false);
     const [isFinish, setIsFinish] = useState(false);
     const [noteUpdate, setNoteUpdate] = useState({ 
-        title: note.title, 
+        // title: note.title, 
         content: note.content, 
         isFavorite: note.isFavorite, 
         categorie: note.categorie
@@ -20,7 +20,7 @@ export default function NoteEdit({note, isOpen}) {
     const handleSubmit = async () => {  
       try{
         const noteUpdated = {
-            title: noteUpdate.title,
+            // title: noteUpdate.title,
             content: noteUpdate.content,
             // isPrivate: noteUpdate.isPrivate,
             // isFavorite: noteUpdate.isFavorite,
@@ -31,7 +31,7 @@ export default function NoteEdit({note, isOpen}) {
         console.log("Note mise a jour avec success !");
         
         setNoteUpdate({ 
-            title: '', 
+            // title: '', 
             content: '', 
             isFavorite: false, 
             categorie: '' 
@@ -50,7 +50,7 @@ export default function NoteEdit({note, isOpen}) {
               <h2 className="text-3xl font-semibold mb-4 text-gray-800">Modifier la note</h2>
               <div className="space-y-3 flex flex-col gap-8 justify-around">
                 <div className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-1">
+                  {/* <div className="flex flex-col gap-1">
                     <label htmlFor="title" className="font-medium text-lg text-gray-600">Titre de votre note</label>
                     <input
                       type="text"
@@ -60,7 +60,7 @@ export default function NoteEdit({note, isOpen}) {
                       placeholder="Titre de la note..."
                       className="w-full px-4 text-gray-800 py-3 rounded-lg border border-gray-500 focus:border-blue-500 focus:outline-none"
                     />
-                  </div>
+                  </div> */}
                   <div className="flex flex-col gap-1">
                     <label htmlFor="content" className="font-medium text-lg text-gray-600">Contenu de votre note</label>
                     <EditorComponent
