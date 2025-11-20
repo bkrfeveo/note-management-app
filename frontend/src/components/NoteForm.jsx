@@ -2,8 +2,8 @@ import { useState } from "react";
 import { COLORS } from "../utils/themeNote";
 import { Plus, Star } from "lucide-react";
 import { Spinner } from "@radix-ui/themes";
-import addNewNoteService from "../services/addNewNote";
 import EditorComponent from "./Editor";
+import { addNewNoteService } from "../services/noteServices";
 
 
 export default function NoteForm({isOpen}) {

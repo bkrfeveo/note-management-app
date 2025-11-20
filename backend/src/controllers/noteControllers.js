@@ -9,6 +9,7 @@ exports.getAllNotes = async (req, res) => {
         
         const filter = { createdBy: req.user._id };
         const notes = await Note.find(filter)
+        .populate('files', 'originalName path url')
         // du plus recent au plus ancien
         .sort({ createdAt: -1 })
         // afficher les taches par groupe de 10 taches

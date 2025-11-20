@@ -3,14 +3,13 @@ import { COLORS } from "../utils/themeNote";
 import { Plus, Star} from "lucide-react";
 import { Spinner } from "@radix-ui/themes";
 import EditorComponent from "./Editor";
-import updateNoteService from "../services/updateNote";
+import { updateNoteService } from "../services/noteServices";
 
 
-export default function NoteEdit({note, isOpen}) {
+export default function EditNoteForm({ note }) {
     const [loading, setLoading] = useState(false);
-    const [isFinish, setIsFinish] = useState(false);
     const [noteUpdate, setNoteUpdate] = useState({ 
-        // title: note.title, 
+        title: note.title, 
         content: note.content, 
         isFavorite: note.isFavorite, 
         categorie: note.categorie
@@ -45,8 +44,7 @@ export default function NoteEdit({note, isOpen}) {
 
     return (
       <div>
-          {(isOpen && !isFinish) &&
-            <div className={`rounded-lg p-6 mb-8 border`}>
+          {<div className={`rounded-lg p-6 mb-8 border`}>
               <h2 className="text-3xl font-semibold mb-4 text-gray-800">Modifier la note</h2>
               <div className="space-y-3 flex flex-col gap-8 justify-around">
                 <div className="flex flex-col gap-4">

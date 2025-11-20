@@ -12,13 +12,15 @@ export default function EditorComponent({ onContentChange }) {
     }
   };
 
-
+  // console.log(import.meta.env.VITE_API_KEY_TINYMCE);
+  
   const editorRef = useRef(null);
   
   return (
     <div>
       <Editor
-        apiKey="wd97hddhf4e5urcknxlcwhha9yb84jhbllrvnou9ykezc8om"
+        // apiKey="wd97hddhf4e5urcknxlcwhha9yb84jhbllrvnou9ykezc8om"
+        apiKey={import.meta.env.VITE_API_KEY_TINYMCE}
         onInit={ (_evt, editor) => editorRef.current = editor }
         value={content}
         onEditorChange={handleEditorChange}

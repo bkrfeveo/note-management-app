@@ -1,24 +1,31 @@
 import { useState, useEffect } from 'react';
 import NoteForm from './NoteForm';
 import NoteCard from './NoteCard';
-import logoutService from '../services/logout';
 import { useNavigate } from 'react-router-dom';
-import getAllNotesService from '../services/getAllNotes';
 import { LogOut, Plus } from 'lucide-react';
+import EditNoteForm from './EditNoteForm';
+import { getAllNotesService } from '../services/noteServices';
+import { logoutService } from '../services/authServices';
 
 
 export default function NotesApp() {
     const [notes, setNotes] = useState([]);
     const [addNewNote, setAddNewNote] = useState(false);
-    const [isFinish, setIsFinish] = useState(false);
+    const [editNote, setEditNote] = useState(false);
     // States de recherches et de filtres
     const [searchNote, setSearchNote] = useState("");
     const [categorie, setCategorie] = useState("");
     const [dateNote, setDateNote] = useState("");
-
+    
 
     const navigate = useNavigate();
-
+    const legendCategorie = [
+        { categorie: 'personnel', class: 'w-5 h-5 bg-blue-300 rounded-sm' },
+        { categorie: 'travail', class: 'w-5 h-5 bg-purple-300 rounded-sm' },
+        { categorie: 'reunion', class: 'w-5 h-5 bg-yellow-300 rounded-sm' },
+        { categorie: 'urgent', class: 'w-5 h-5 bg-green-300 rounded-sm' },
+        { categorie: 'autres', class: 'w-5 h-5 bg-pink-300 rounded-sm' },
+    ]
     
     useEffect(() => {
         if (notes.length > 0) {
@@ -76,7 +83,7 @@ export default function NotesApp() {
                     onClick={handleLogout}
                 ><LogOut /></button>
             </div>
-            <div className="flex flex-col gap-10 mb-8">
+            <div className="flex flex-col gap-10 mb-4">
                 <div>
                     <h2 className="text-gray-700 text-left mb-4 font-medium text-2xl">Filtrer vos recherches</h2>
                     <div className="flex md:flex-row flex-col-reverse gap-4 justify-between">
@@ -123,7 +130,7 @@ export default function NotesApp() {
                         {/* Formulaire de création */}
                         <button
                             className="flex items-center gap-3 justify-center bg-blue-500 hover:bg-blue-600 text-white duration-200 active:bg-blue-700 font-medium py-2 px-6 rounded-[10px]"
-                            onClick={() => { setAddNewNote(!addNewNote); setIsFinish(false);}}
+                            onClick={() => setAddNewNote(!addNewNote)}
                         >
                             {!addNewNote ? 
                             <>
@@ -138,7 +145,14 @@ export default function NotesApp() {
                     </div>
                 </div>
             </div>
-            {addNewNote && <NoteForm isOpen={addNewNote} />}   
+            <div className='mt-8 mb-4 flex flex-row justify-between'>
+                {legendCategorie.map((legend) => (<div className='flex flex-row gap-2 items-center'>
+                    <div className={legend.class}></div>
+                    <p className='text-gray-600 font-medium'>{legend.categorie}</p>
+                </div>)
+                )}
+            </div>
+            {addNewNote && <NoteForm isOpen={addNewNote} />}
             {/* Grille de notes */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredNotes.map(note => (

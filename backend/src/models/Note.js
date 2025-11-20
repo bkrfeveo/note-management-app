@@ -23,10 +23,14 @@ const noteSchema = new mongoose.Schema({
     trim: true,
     default: false,
   },
+  files: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'File'
+  }],
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    required: [true, 'L\'utilisateur est requis'],
   },
   createdAt: {
     type: Date,
