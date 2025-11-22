@@ -1,8 +1,36 @@
 @import "tailwindcss";
 
 #root {
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: transparent;
 }
+
+[data-theme="light"] {
+  --bg-color: white;
+  --text-color: black;
+}
+
+[data-theme="dark"] {
+  --bg-color: rgb(45, 45, 45);
+  --text-color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.themeApp {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* .themeStatistic {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+} */
 
 .box-shadow-css {
   box-shadow: rgba(0, 72, 253, 0.24) 0px 3px 8px;
@@ -33,4 +61,12 @@ h4 {
 h5 {
   font-size: 13px;
   font-weight: 500;
+}
+
+.boxShadowCSS {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.boxShadowCSS:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

@@ -47,6 +47,7 @@ exports.uploadFile = async (req, res) => {
             category,
             metadata
         });
+        console.log(file);
         
         // Enregistrer le fichier
         await file.save();
@@ -57,7 +58,7 @@ exports.uploadFile = async (req, res) => {
             const Note = require('../models/Note');
             await Note.findByIdAndUpdate(
                 noteId,
-                { $push: { files: file._id } }
+                { $push: { files: file } }
             );
         };
 
@@ -134,15 +135,15 @@ exports.uploadMultipleFiles = async (req, res) => {
 // Recuperer un fichier
 exports.getFile = async (req,res) => {
     try {
-        const file = await File.find({ filename: req.params.filename })
+        const file = await File.findOne({ filename: req.params.filename })
         // .populate('uploadedBy', 'name email')
         .populate('note', 'content');
 
         if (!file) {
            return res.status(404).json({ message: 'Fichier non trouvé' });
         };
-
-        if (file.uploadedBy._id.toString() !== req.user._id.toString()) {
+        console.log(file)
+        if (file.uploadedBy.toString() !== req.user._id.toString()) {
            return res.status(403).json({ message: 'Accès non autorisé à ce fichier' });
         };
 

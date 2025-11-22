@@ -4,7 +4,7 @@ import api from "./api";
 const getAllNotesService = async () => {
     try {
         const response = await api.get('/notes');
-        console.log(response.data);
+        // console.log(response.data);
 
         return response.data;
     } catch (err) {

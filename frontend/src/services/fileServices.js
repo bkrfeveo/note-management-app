@@ -3,16 +3,11 @@ import api from './api';
 
 
 // Uploader un fichier
-const uploadFile = async (file, data = {}) => {
+const uploadFileService = async (file, data) => {
 try {
-    const formData = new FormData();
-    formData.append('file', file);
-    
-    Object.keys(data).forEach(key => {
-    formData.append(key, data[key]);
-    });
+    // const [formData, setFormData] = (null);
 
-    const response = await api.post('/files/upload', formData, {
+    const response = await api.post('/files/upload', data, {
     headers: {
         'Content-Type': 'multipart/form-data',
     },
@@ -25,7 +20,7 @@ try {
 
 
 // Uploader plusieurs fichiers
-const uploadMultipleFiles = async (files, data = {}) => {
+const uploadMultipleFilesService = async (files, data = {}) => {
 try {
     const formData = new FormData();
     
@@ -50,7 +45,7 @@ try {
 
 
 // Recuperer les fichiers de l'utilisateur concerne
-const getUserFiles = async (filters = {}) => {
+const getUserFilesService = async (filters = {}) => {
 try {
     const response = await api.get('/files/my-files', { params: filters });
     return response.data;
@@ -61,7 +56,7 @@ try {
 
 
 // Recuperer les infos d'un fichier
-const getFileInfo = async (filename) => {
+const getFileInfoService = async (filename) => {
 try {
     const response = await api.get(`/files/info/${filename}`);
     return response.data;
@@ -72,7 +67,7 @@ try {
 
 
 // Supprimer un fichier
-const deleteFile = async (id) => {
+const deleteFileService = async (id) => {
 try {
     const response = await api.delete(`/files/${id}`);
     return response.data;
@@ -83,9 +78,9 @@ try {
 
 
 export {
-    uploadFile,
-    uploadMultipleFiles, 
-    getUserFiles,
-    getFileInfo, 
-    deleteFile
+    uploadFileService,
+    uploadMultipleFilesService, 
+    getUserFilesService,
+    getFileInfoService, 
+    deleteFileService
 };

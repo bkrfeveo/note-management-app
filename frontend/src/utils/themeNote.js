@@ -7,10 +7,10 @@ export const COLORS = [
     { name: 'Pink', class: 'bg-pink-300 hover:bg-pink-400', text: 'text-pink-900' }
 ];
 
-export const colorsByCategorie = (categorie) => { 
-      categorie === 'personnel' && COLORS[0] || // bleu
-      categorie === 'travail' && COLORS[1] ||  // purple
-      categorie === 'reunion' && COLORS[3] || // jaune
-      categorie === 'urgent' && COLORS[4] ||  //  vert
+export const colorsBycategory = (category) => { 
+      category === 'personnel' && COLORS[0] || // bleu
+      category === 'travail' && COLORS[1] ||  // purple
+      category === 'reunion' && COLORS[3] || // jaune
+      category === 'urgent' && COLORS[4] ||  //  vert
       COLORS[5]   // pink ou rose
 }

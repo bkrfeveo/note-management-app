@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
 export default function EditorComponent({ onContentChange }) {
-  // const apiKey = process.env.REACT_APP_API_KEY_TINYMCE;
   const [content, setContent] = useState('');
   
   const handleEditorChange = (content) => { 
@@ -24,7 +23,7 @@ export default function EditorComponent({ onContentChange }) {
         onInit={ (_evt, editor) => editorRef.current = editor }
         value={content}
         onEditorChange={handleEditorChange}
-        initialValue=""
+        initialValue={content}
         init={{
           height: 500,
           menubar: false,

@@ -43,9 +43,9 @@ exports.getNoteId = async (req, res) => {
 
         const noteId = await Note.findById(idParams)
         // ajouter dans champ createdBy avec les informations de l'utilisateur (name et email)
-        .populate('createdBy', 'name email') || undefined;
+        .populate('createdBy', 'name email') || undefined
         
-        console.log(noteId);
+        // console.log(noteId);
         
         // Verifier si la note demandee existe
         if (!noteId || noteId === undefined)
@@ -70,14 +70,14 @@ exports.getNoteId = async (req, res) => {
 // Creer une nouvelle note
 exports.createNote = async (req, res) => {
     try {
-        const { content, categorie } = req.body;
+        const { content, category } = req.body;
         const createdBy = req.user._id;
 
         if(!content || content === "") 
             res.status(400).json({ message: "Le contenu est requis" });
 
         // Creer une nouvelle note
-        const newNote = new Note({ content, categorie, createdBy });
+        const newNote = new Note({ content, category, createdBy });
 
         // Enregistrer la note
         await newNote.save();
@@ -98,7 +98,7 @@ exports.createNote = async (req, res) => {
 exports.updateNote = async (req, res) => {
     try {
         const idParams = req.params.id;
-        const { content, categorie } = req.body;
+        const { content, category } = req.body;
 
         const noteId = await Note.findById(idParams);
         console.log(noteId);
@@ -115,7 +115,7 @@ exports.updateNote = async (req, res) => {
         const noteUpdated = {
             // title: title || noteId.title,
             content: content || noteId.content,
-            categorie: categorie || noteId.categorie,
+            category: category || noteId.category,
         };
 
         await Note.findByIdAndUpdate(

@@ -13,7 +13,7 @@ const noteSchema = new mongoose.Schema({
     required: [true, 'le contenu est requis'],
     trim: true,
   },
-  categorie: {
+  category: {
     type: String,
     trim: true,
     enum: ['personnel', 'travail', 'urgent', 'reunion', 'autres'],
