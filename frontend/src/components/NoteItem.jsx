@@ -36,34 +36,6 @@ const NoteItem = ({ note }) => {
     };
 
 
-    const openImage = () => {
-        return (
-            <Dialog.Root>
-                <Dialog.Trigger>
-                    <img 
-                        src={`${note.files?.url}`} 
-                        className="w-full h-28 object-cover rounded-lg cursor-pointer"
-                        alt={note.files?.originalName} 
-                    />
-                </Dialog.Trigger>
-                <Dialog.Content color="none">
-                    <img 
-                        src={`${note.files?.url}`} 
-                        className="w-full h-auto object-cover rounded-lg"
-                        alt={note.files?.originalName} 
-                    />
-                    <Flex gap="3" justify="end">
-                        <Dialog.Close>
-                            <Button variant="soft" color="gray">
-                                Fermer
-                            </Button>
-                        </Dialog.Close>
-                    </Flex>
-                </Dialog.Content>
-            </Dialog.Root>
-        );
-    }
-
     return (
         <Dialog.Root>
             <Dialog.Trigger>

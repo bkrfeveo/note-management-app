@@ -8,7 +8,7 @@ import { getAllNotesService } from '../services/noteServices';
 import { logoutService } from '../services/authServices';
 import { useTheme } from '../context/themeProvider';
 import NoteStatistic from './NoteStatistic';
-import { EditProvider, useEdit } from '../context/EditContext';
+import { EditProvider } from '../context/EditContext';
 
 
 export default function NotesApp() {

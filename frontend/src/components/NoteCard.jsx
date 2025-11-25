@@ -1,5 +1,5 @@
 import { Edit2, Star, Trash2, } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { COLORS } from "../utils/themeNote";
 import NoteItem from "./NoteItem";
 import { Spinner } from "@radix-ui/themes";
