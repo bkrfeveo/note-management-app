@@ -65,7 +65,7 @@ const NoteCard = ({ note }) => {
               </p>
             : <p className="my-4"></p>
           }
-          <p className={`${themeBycategory.text} text-sm flex items-center font-medium gap-0`}>
+          <p className={`${themeBycategory.text} text-sm flex items-center font-medium gap-0.5`}>
               <span className="w-fit">note créée le</span>
               <span>
                 {new Date(note.createdAt).toLocaleDateString('fr-FR')}

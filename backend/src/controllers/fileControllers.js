@@ -109,6 +109,15 @@ exports.uploadMultipleFiles = async (req, res) => {
       await fileDoc.save();
       await fileDoc.populate('uploadedBy', 'name email');
       uploadedFiles.push(fileDoc);
+      // Si un noteId est fourni, lier le fichier à la tâche
+        if (noteId) {
+            await file.populate('note', 'content');
+            const Note = require('../models/Note');
+            await Note.findByIdAndUpdate(
+                noteId,
+                { $push: { files: uploadedFiles } }
+            );
+        };
     }
 
     res.status(201).json({
@@ -193,7 +202,8 @@ exports.getUserFiles = async (req, res) => {
 // Supprimer un fichier
 exports.deleteFile = async (req, res) => {
     try {
-        const file = await File.findById(req.params.id);
+        const noteId = req.params.id
+        const file = await File.findById(noteId);
 
         if (!file) {
         return res.status(404).json({ message: 'Fichier non trouvé' });
@@ -206,6 +216,16 @@ exports.deleteFile = async (req, res) => {
 
         // La suppression du fichier physique est gérée par le middleware pre('deleteOne')
         await File.findByIdAndDelete(req.params.id);
+
+         // Si un noteId est fourni, lier le fichier à la tâche
+        if (noteId) {
+            await file.populate('note', 'content');
+            const Note = require('../models/Note');
+            await Note.findByIdAndUpdate(
+                noteId,
+                { $pop: { files: file } }
+            );
+        };
 
         res.json({ message: 'Fichier supprimé avec succès' });
 

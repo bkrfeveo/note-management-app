@@ -11,32 +11,37 @@ export default function NoteForm({isOpen}) {
     const [isFinish, setIsFinish] = useState(false);
     const [messageError, setMessageError] = useState('');
     const [newNote, setNewNote] = useState({ 
-        // title: '', 
         content: '', 
         isFavorite: false, 
         category: '' 
     });
-    const [fileNote, setFileNote] = useState({ path: '', idNote: ''});
-    
-    // console.log("hors fonction submit : ", fileNote);
+    const [fileNote, setFileNote] = useState({ file: '', noteId: ''});
+    console.log("hors fonction submit : ", fileNote);
     
     const handleSubmit = async () => {  
       try{
         if (!newNote.content.trim()) {
-          setMessageError(true);
+          setMessageError("Le contenu de la note est obligatoire");
+        } else if (!newNote.category.trim()) {
+          setMessageError("Choisissez une catégorie pour la note");
         } else {
           setMessageError(false);
           setLoading(true);
           const newNoteResponse = await addNewNoteService(newNote);
           console.log("Response : ", newNoteResponse.note._id);
           
-          setFileNote({...fileNote, idNote: newNoteResponse.note._id});
+          setFileNote({...fileNote, noteId: newNoteResponse.note._id});
           if (fileNote){
-            console.log(fileNote);
-            await uploadFileService(fileNote);
-            console.log("Fichier ajoute avec succes \n");
+            try{
+              console.log(fileNote);
+              await uploadFileService(fileNote);
+              console.log("Fichier ajoute avec success \n");
+              setFileNote({ file: '', noteId: '' });
+            } catch (err) {
+              console.error("Erreur lors de l'ajout du fichier : ", err);
+              setFileNote({ file: '', noteId: '' });
+            }
           };
-          console.log("hors if : ", fileNote);
           
           console.log("Note ajoutee avec succes !\n", newNote);;
           setIsFinish(true);
@@ -104,18 +109,20 @@ export default function NoteForm({isOpen}) {
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label htmlFor="fileNote" className="themeApp font-medium text-lg text-gray-600">Pièces jointes (cliquez dans le champ pour ajouter)</label>
+                  <label 
+                    htmlFor="fileNote" 
+                    className="themeApp font-medium text-lg text-gray-600"
+                  >Pièces jointes (cliquez dans le champ pour ajouter)</label>
                   <input
                     type="file"
                     id="fileNote"
-                    value={fileNote.path}
-                    onChange={(e) => setFileNote({...fileNote, path: e.target.value})}
+                    onChange={(e) => setFileNote(e.target.files[0] ? {file: e.target.files[0]} : {...fileNote, file: ''})}
                     className="w-full px-4 bg-gray-100 text-gray-800 py-3 rounded-lg border border-gray-500 focus:border-blue-500 focus:outline-none"
                   />
                 </div>
                 {messageError && 
                   <p className="text-red-500 -my-4 text-lg">
-                    Le titre et le contenu sont obligatoires
+                    {messageError}
                   </p>
                 }
                 <div className="flex sm:flex-row flex-col gap-4 justify-between">

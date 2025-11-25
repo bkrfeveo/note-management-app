@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+import { useEdit } from '../context/EditContext';
 
-export default function EditorComponent({ onContentChange }) {
+export default function EditorEditNoteForm({ onContentChange }) {
   const [content, setContent] = useState('');
+  const { editingItem } = useEdit();
   
   const handleEditorChange = (content) => { 
     setContent(content);
@@ -23,7 +25,7 @@ export default function EditorComponent({ onContentChange }) {
         onInit={ (_evt, editor) => editorRef.current = editor }
         value={content}
         onEditorChange={handleEditorChange}
-        initialValue=''
+        initialValue={editingItem.content}
         init={{
           height: 500,
           menubar: false,

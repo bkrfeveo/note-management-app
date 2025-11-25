@@ -51,15 +51,15 @@ export default function NotesApp() {
         // Recuperer toutes les notes de l'utilisateur
         const fetchNotes = async () => {
             const fetchedNotes = await getAllNotesService();
-            console.log(fetchedNotes);
+            // console.log(fetchedNotes);
             setNotes(fetchedNotes.notes);
             setUserInfos(fetchedNotes.user);
         };
         fetchNotes();
-    }, []);
-    // console.log(notes);
-    
+    }, [notes]);
 
+
+    // Filtrage des notes
     const filteredNotes = notes.filter((note) => {
         // recuperer les donnees recherchees tout en prenant en compte la sensibilite a la casse
         const matchesSearch = note.content.toLowerCase().includes(searchNote.toLowerCase())
@@ -92,7 +92,7 @@ export default function NotesApp() {
                         <p className="text-gray-600 mt-4 themeApp text-xl font-medium">Organisez vos idées simplement</p>
                     </div>
                     <div className='flex flex-row gap-4 items-start'>
-                        <p className='mt-2 text-lg'>Bienvenue <strong>{userInfos?.name?.split(' ')[0]}</strong></p>
+                        <p className='sm:inline-block hidden mt-2 text-lg'>Bienvenue <strong>{userInfos?.name?.split(' ')[0]}</strong></p>
                         <button
                             className='bg-blue-500/30 hover:bg-blue-600/35 duration-200 active:bg-blue-300 text-blue-500 w-fit h-fit p-2 rounded-md'
                             onClick={toggleTheme}

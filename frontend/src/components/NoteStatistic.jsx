@@ -13,7 +13,7 @@ export default function NoteStatistic({ notes }) {
         <div className="p-4 border border-gray-400 rounded-lg shadow-md mb-2">
             <h2 className="text-xl themeApp font-bold mb-4 text-gray-800">Vos Statistiques</h2>
             {notes?.length > 0 && 
-            <div className="grid grid-cols-3 gap-8 justify-between">
+            <div className="grid sm:grid-cols-3 grid-cols-2 gap-8 justify-between">
                 <div className="text-center bg-gray-600/40 p-2 rounded-lg">
                     <p className="bg-transparent font-medium">Total Notes</p>
                     <p className="text-3xl font-bold">{totalNotes}</p>

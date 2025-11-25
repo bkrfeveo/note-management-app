@@ -3,15 +3,19 @@ import api from './api';
 
 
 // Uploader un fichier
-const uploadFileService = async (file, data) => {
+const uploadFileService = async (file) => {
 try {
-    // const [formData, setFormData] = (null);
-
-    const response = await api.post('/files/upload', data, {
-    headers: {
-        'Content-Type': 'multipart/form-data',
-    },
-    });
+    console.log(file);
+    
+    const response = await api.post(
+        '/files/upload', 
+        file, 
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        }
+    );
     return response.data;
 } catch (error) {
     throw error.response?.data || error.message;
@@ -20,7 +24,7 @@ try {
 
 
 // Uploader plusieurs fichiers
-const uploadMultipleFilesService = async (files, data = {}) => {
+const uploadMultipleFilesService = async (files = {}) => {
 try {
     const formData = new FormData();
     
@@ -28,11 +32,8 @@ try {
     formData.append('files', file);
     });
     
-    Object.keys(data).forEach(key => {
-    formData.append(key, data[key]);
-    });
 
-    const response = await api.post('/files/upload-multiple', formData, {
+    const response = await api.post('/files/upload-multiple', files, {
     headers: {
         'Content-Type': 'multipart/form-data',
     },
