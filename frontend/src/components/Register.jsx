@@ -49,24 +49,24 @@ const Register = ()  => {
     
     return(
         <div className="w-full flex flex-col gap-4 items-center my-16 justify-center">
-            <form className="w-full box-shadow-css shadow-blue-400 rounded-xl mb-20 p-4 flex flex-col gap-8">
+            <form className="lg:w-1/2 box-shadow-css shadow-blue-400 rounded-xl mb-20 p-4 flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
                     <h2 className="text-gray-600 text-center font-bold text-3xl">Inscription</h2>
                     <p className="text-gray-700 px-2">Creer un compte et commencer à gérer vos tâches</p>
                 </div>
                 <div className="flex flex-col gap-4 w-full">
-                    {/* <div className="flex md:flex-row flex-col gap-2"> */}
-                    <div className="flex flex-col gap-2 justify-start">
-                        <label className="pl-2 text-left font-semibold text-gray-500" htmlFor="name">Nom complet *</label>
-                        <input 
-                            className="bg-transparent p-2 rounded-lg border border-gray-500 no-underline" 
-                            value={datasRegister.name}
-                            onChange={(e) => setDatasRegister({...datasRegister, name: e.target.value})}
-                            id="name"
-                            type="text"
-                            placeholder="" 
-                        />
-                    </div>
+                    <div className="flex sm:flex-row flex-col gap-2">
+                        <div className="sm:w-1/2 w-full flex flex-col gap-2 justify-start">
+                            <label className=" pl-2 text-left font-semibold text-gray-500" htmlFor="name">Nom complet *</label>
+                            <input 
+                                className="bg-transparent p-2 rounded-lg border border-gray-500 no-underline" 
+                                value={datasRegister.name}
+                                onChange={(e) => setDatasRegister({...datasRegister, name: e.target.value})}
+                                id="name"
+                                type="text"
+                                placeholder="" 
+                            />
+                        </div>
                         {/* <div className="flex flex-col gap-2 justify-start">
                             <label className="pl-2 text-left font-semibold text-gray-500" htmlFor="lastName">Nom *</label>
                             <input 
@@ -78,18 +78,17 @@ const Register = ()  => {
                                 placeholder="" 
                             />
                         </div> */}
-                    {/* </div> */}
-                    {/* <div className="flex md:flex-row flex-col gap-2"> */}
-                    <div className="flex flex-col gap-2 justify-start">
-                        <label className="pl-2 text-left font-semibold text-gray-500" htmlFor="email">Email *</label>
-                        <input
-                            className="bg-transparent p-2 rounded-lg border border-gray-500 no-underline"
-                            value={datasRegister.email}
-                            onChange={(e) => setDatasRegister({...datasRegister, email: e.target.value})}
-                            id="email"
-                            type="email"
-                            placeholder="monemail@gmail.com"
-                        />
+                        <div className="sm:w-1/2 w-full flex flex-col gap-2 justify-start">
+                            <label className="pl-2 text-left font-semibold text-gray-500" htmlFor="email">Email *</label>
+                            <input
+                                className="bg-transparent p-2 rounded-lg border border-gray-500 no-underline"
+                                value={datasRegister.email}
+                                onChange={(e) => setDatasRegister({...datasRegister, email: e.target.value})}
+                                id="email"
+                                type="email"
+                                placeholder="monemail@gmail.com"
+                                />
+                        </div>
                     </div>
                         {/* <div className="flex flex-col gap-2 justify-start">
                             <label className="pl-2 text-left font-semibold text-gray-500" htmlFor="email">nom utilisateur *</label>
@@ -102,7 +101,6 @@ const Register = ()  => {
                                 placeholder="Ex: Abou, fadel..."
                             />
                         </div> */}
-                    {/* </div> */}
                     <div className="flex flex-col gap-2 justify-start">
                         <label className="pl-2 text-left font-semibold text-gray-500" htmlFor="password1">Entrer un mot de passe *</label>
                         <input 
