@@ -3,7 +3,8 @@ import { Editor } from '@tinymce/tinymce-react';
 
 export default function EditorComponent({ onContentChange }) {
   const [content, setContent] = useState('');
-  
+  const apiKey = import.meta.env.VITE_API_KEY_TINYMCE || 'wd97hddhf4e5urcknxlcwhha9yb84jhbllrvnou9ykezc8om'
+
   const handleEditorChange = (content) => { 
     setContent(content);
     if (typeof onContentChange === 'function'){
@@ -19,7 +20,7 @@ export default function EditorComponent({ onContentChange }) {
     <div>
       <Editor
         // apiKey="wd97hddhf4e5urcknxlcwhha9yb84jhbllrvnou9ykezc8om"
-        apiKey={import.meta.env.VITE_API_KEY_TINYMCE}
+        apiKey={apiKey}
         onInit={ (_evt, editor) => editorRef.current = editor }
         value={content}
         onEditorChange={handleEditorChange}
